@@ -17,3 +17,6 @@ build/
 
 # Visual Studio temp files
 .vs/
+# Visual Studio temporary files
+**/.vs/
+
