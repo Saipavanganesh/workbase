@@ -104,3 +104,11 @@ D:\workbase\backend\WorkbaseApi\WorkbaseApi\obj\Debug\net8.0\WorkbaseApi.pdb
 D:\workbase\backend\WorkbaseApi\WorkbaseApi\obj\Debug\net8.0\WorkbaseApi.genruntimeconfig.cache
 D:\workbase\backend\WorkbaseApi\WorkbaseApi\obj\Debug\net8.0\ref\WorkbaseApi.dll
 D:\workbase\backend\WorkbaseApi\WorkbaseApi\bin\Debug\net8.0\BCrypt.Net-Next.dll
+D:\workbase\backend\WorkbaseApi\WorkbaseApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\workbase\backend\WorkbaseApi\WorkbaseApi\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\workbase\backend\WorkbaseApi\WorkbaseApi\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\workbase\backend\WorkbaseApi\WorkbaseApi\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\workbase\backend\WorkbaseApi\WorkbaseApi\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\workbase\backend\WorkbaseApi\WorkbaseApi\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\workbase\backend\WorkbaseApi\WorkbaseApi\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\workbase\backend\WorkbaseApi\WorkbaseApi\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

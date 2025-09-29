@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorkbaseApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53b7e63358218786e2d720d9232443c6b8ede401")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c557eb745eef61b7788b9f1601ebe6c2511c915d")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorkbaseApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorkbaseApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

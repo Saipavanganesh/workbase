@@ -18,5 +18,6 @@
         public int? ManagerId { get; set; }
         public User? Manager { get; set; }
         public ICollection<User> Subordinates { get; set; } = new HashSet<User>();
+        public bool IsPrimaryAdmin { get; set; } = false;
     }
 }

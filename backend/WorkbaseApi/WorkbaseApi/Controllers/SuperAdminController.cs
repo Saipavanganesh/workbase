@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WorkbaseApi.Data;
 using WorkbaseApi.Entities;
@@ -7,6 +8,7 @@ using WorkbaseApi.Models;
 
 namespace WorkbaseApi.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     [ApiController]
     [Route("api/v1/superadmin")]
     public class SuperAdminController : ControllerBase
@@ -55,6 +57,55 @@ namespace WorkbaseApi.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ApiResponse<UserResponse>.Error($"{ex.Message}"));
+            }
+        }
+
+        [HttpPost("tenant")]
+        public IActionResult CreateTenant([FromBody] CreateTenantRequest request)
+        {
+            try
+            {
+                var exists = _workbaseDbContext.Tenants.Any(t => t.Name == request.Name);
+                if (exists)
+                {
+                    return BadRequest(ApiResponse<string>.Error($"Tenant already exists: {request.Name}"));
+                }
+                if(!Enum.TryParse<SubscriptionType>(request.SubscriptionType, true, out var subscriptionType))
+                {
+                    return BadRequest(ApiResponse<string>.Error("Invalid subscription type"));
+                }
+                var tenant = new Tenant
+                {
+                    Name = request.Name,
+                    SubscriptionType = subscriptionType
+                };
+                _workbaseDbContext.Tenants.Add(tenant);
+                _workbaseDbContext.SaveChanges();
+
+                var adminUser = new User
+                {
+                    FirstName = "admin",
+                    LastName = tenant.Name,
+                    Email = $"admin@{tenant.Name.ToLower()}.com",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin@123"),
+                    RoleId = (int)RoleType.TenantAdmin,
+                    TenantId = tenant.Id,
+                    IsPrimaryAdmin = true
+                };
+                _workbaseDbContext.Users.Add(adminUser);
+                _workbaseDbContext.SaveChanges();
+
+                var response = new
+                {
+                    TenantId = tenant.Id,
+                    TenantName = tenant.Name,
+                    DefaultAdminEmail = adminUser.Email,
+                };
+                return Ok(ApiResponse<object>.Success(response, "Super Admin created successfully"));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ApiResponse<string>.Error($"{ex.Message}"));
             }
         }
     }
