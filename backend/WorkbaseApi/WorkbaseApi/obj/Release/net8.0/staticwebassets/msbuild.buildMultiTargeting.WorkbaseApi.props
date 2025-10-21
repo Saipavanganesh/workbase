@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\WorkbaseApi.props" />
+</Project>

@@ -60,5 +60,40 @@ namespace WorkbaseApi.Controllers
                 return BadRequest(ApiResponse<UserResponse>.Error($"{ex.Message}"));
             }
         }
+
+        //Temporary
+        [HttpGet("all-superadmins")]
+        public IActionResult GetAllSuperAdmins()
+        {
+            try
+            {
+                // Query to get all users with SuperAdmin role
+                var superAdmins = _workbaseDbContext.Users
+                    .Where(u => u.RoleId == (int)RoleType.SuperAdmin)
+                    .Select(u => new UserResponse
+                    {
+                        Id = u.Id,
+                        FirstName = u.FirstName,
+                        LastName = u.LastName,
+                        Email = u.Email,
+                        RoleType = RoleType.SuperAdmin.ToString(),
+                        TenantId = u.TenantId
+                    })
+                    .ToList();
+
+                if (superAdmins.Count == 0)
+                {
+                    return NotFound(ApiResponse<UserResponse>.Error("No Super Admins found."));
+                }
+
+                return Ok(ApiResponse<List<UserResponse>>.Success(superAdmins, "Super Admins retrieved successfully"));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ApiResponse<UserResponse>.Error($"Error: {ex.Message}"));
+            }
+        }
+
+
     }
 }
