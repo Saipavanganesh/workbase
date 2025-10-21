@@ -65,6 +65,7 @@ namespace WorkbaseApi.Controllers
         {
             try
             {
+
                 var exists = _workbaseDbContext.Tenants.Any(t => t.Name == request.Name);
                 if (exists)
                 {
